@@ -1,0 +1,158 @@
+settings:
+  token_env: TOKEN
+  parse_mode: html
+
+config:
+  sponsor_chat: -1001381320622
+  delete_delay: 20s
+
+  bonuses.start: 500
+  bonuses.daily: 100
+  bonuses.friend: 500
+  bonuses.donate: 1000
+  bonuses.sponsor: 1000
+
+buttons:
+  play: 🎰 Играть
+  stats: 📊 Статистика
+  perks: 🌟 Перки
+  leaderboard: 🏆 Рейтинг
+  bonuses: 🎁 Бонусы
+
+  bet_r: &bet_r
+    unique: r
+  bet_g: &bet_g
+    unique: g
+  bet_b: &bet_b
+    unique: b
+  bet_100_r:
+    <<: *bet_r
+    callback_data: 100
+    text: 🔴  100
+  bet_1000_r:
+    <<: *bet_r
+    callback_data: 1000
+    text: 🔴  1000
+  bet_double_r:
+    <<: *bet_r
+    callback_data: x2
+    text: 🔴  x2
+  bet_100_g:
+    <<: *bet_g
+    callback_data: 100
+    text: 🍀  100
+  bet_1000_g:
+    <<: *bet_g
+    callback_data: 1000
+    text: 🍀  1000
+  bet_double_g:
+    <<: *bet_g
+    callback_data: x2
+    text: 🍀  x2
+  bet_100_b:
+    <<: *bet_b
+    callback_data: 100
+    text: ⚫️ 100
+  bet_1000_b:
+    <<: *bet_b
+    callback_data: 1000
+    text: ⚫️ 1000
+  bet_double_b:
+    <<: *bet_b
+    callback_data: x2
+    text: ⚫️ x2
+  roll:
+    text: Крутить рулетку
+    unique: roulette_roll
+
+  deposit:
+    unique: deposit
+    text: Пополнить баланс
+
+  bonus_daily:
+    unique: bonus_daily
+    text: 1. Забрать бонус
+  bonus_friends:
+    switch_inline_query: '#'
+    text: 2. Пригласить друга
+  bonus_sponsor:
+    unique: bonus_sponsor
+    text: 3. Проверить подписку
+
+  perk: &perk
+    unique: perk
+  perk_mafioso:
+    <<: *perk
+    callback_data: mafioso
+    text: 🎩 Мафиози
+  perk_banker:
+    <<: *perk
+    callback_data: banker
+    text: Банкир 👔
+  perk_hacker:
+    <<: *perk
+    callback_data: hacker
+    text: 🧑‍💻 Хакер
+  perk_king:
+    <<: *perk
+    callback_data: miser
+    text: Скряга 🤑
+  perk_clown:
+    <<: *perk
+    callback_data: clown
+    text: 🤡 Клоун
+  perk_petuh:
+    <<: *perk
+    callback_data: petuh
+    text: Петух 🐔
+  perk_statue:
+    <<: *perk
+    callback_data: statue
+    text: 🗿 Статуя
+  perk_virus:
+    <<: *perk
+    callback_data: virus
+    text: Вирус 🦠
+
+  perk_buy:
+    text: Приобрести за {{ .Amount }}₽
+    url: '{{ .EnotioURL }}&c={{ text (print `perk_short_` .Perk) }}'
+  perk_buy_alt:
+    text: Не получается оплатить?
+    url: '{{ .AnypayURL }}&desc={{ text (print `perk_short_` .Perk) }}'
+  perks_support:
+    text: Все ещё есть проблемы?
+    url: https://t.me/HandyManagerBot
+  perks_back:
+    text: Вернуться
+    unique: perks_back
+
+markups:
+  private_menu:
+    - [ play ]
+    - [ stats, perks ]
+    - [ leaderboard, bonuses ]
+  stats:
+    - [ deposit ]
+    # TODO: - [share_stats]
+  bonuses:
+    - [ bonus_daily ]
+    - [ bonus_friends ]
+    - [ bonus_sponsor ]
+  roulette:
+    - [ bet_100_r, bet_1000_r, bet_double_r ]
+    - [ bet_100_b, bet_1000_b, bet_double_b ]
+    - [ bet_100_g, bet_1000_g, bet_double_g ]
+    - [ roll ]
+  perks:
+    - [ perk_mafioso, perk_banker ]
+    - [ perk_hacker, perk_king ]
+    - [ perk_clown, perk_petuh ]
+    - [ perk_statue, perk_virus ]
+  perk_buy:
+    - [ perk_buy ]
+    - [ perk_buy_alt ]
+    - [ perks_support ]
+    - [ perks_back ]
+  perks_back:
+    - [ perks_back ]

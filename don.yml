@@ -1,0 +1,28 @@
+
+mafioso:
+  level: 2
+  scopes:
+    - +10%
+  meta:
+    price: '100'
+
+banker:
+  level: 2
+  scopes:
+    - -10%
+  meta:
+    price: '100'
+
+hacker:
+  level: 2
+  scopes:
+    - auto_bonuses
+  meta:
+    price: '100'
+
+miser:
+  level: 2
+  scopes:
+    - double_bonuses
+  meta:
+    price: '100'
